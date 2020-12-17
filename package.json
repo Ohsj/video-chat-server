@@ -1,0 +1,25 @@
+{
+  "name": "video-chat-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon --watch src src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ohsj/video-chat-server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ohsj/video-chat-server/issues"
+  },
+  "homepage": "https://github.com/Ohsj/video-chat-server#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
