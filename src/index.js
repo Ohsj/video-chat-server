@@ -26,8 +26,7 @@ app.get('/', (req, res) => {
 });
 
 io.on('connection', socket => {
-    const addr = socket.handshake.address
-    logger.info(`Connecting    [socketId: ${socket.id}, clientIp: ${addr.address}:${addr.port}]`)
+    logger.info(`Connecting    [socketId: ${socket.id}, clientIp: ${socket.request.connection.remoteAddress}]`)
 
     socket.on('join', joinData => {
         const roomClients = io.sockets.adapter.rooms[joinData.roomId] || {length: 0};
