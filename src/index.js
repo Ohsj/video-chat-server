@@ -14,7 +14,7 @@ const server = createServer(app);
 const io = socket(server);
 const port = 5000;
 const corsOpt = {
-    origin: '*',
+    origin: ['http://localhost:3000'],
     credentials: true,
 }
 
@@ -48,6 +48,25 @@ io.on('connection', socket => {
         }
     });
 
+    socket.on('start_call', (roomId) => {
+        logger.info(`Broadcasting start_call event to peers in room ${roomId}`);
+        socket.broadcast.to(roomId).emit('start_call');
+    });
+
+    socket.on('webrtc_offer', (event) => {
+        logger.info(`Broadcasting webrtc_offer event to peers in room ${event.roomId}`)
+        socket.broadcast.to(event.roomId).emit('webrtc_offer', event.sdp)
+    });
+
+    socket.on('webrtc_answer', (event) => {
+        logger.info(`Broadcasting webrtc_answer event to peers in room ${event.roomId}`)
+        socket.broadcast.to(event.roomId).emit('webrtc_answer', event.sdp)
+    });
+
+    socket.on('webrtc_ice_candidate', (event) => {
+        logger.info(`Broadcasting webrtc_ice_candidate event to peers in room ${event.roomId}`)
+        socket.broadcast.to(event.roomId).emit('webrtc_ice_candidate', event)
+    });
     socket.on("disconnect", () => {
         logger.info(`Disconnecting [socketId: ${socket.id}]`)
     });
