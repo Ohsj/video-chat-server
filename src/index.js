@@ -12,9 +12,9 @@ const advice = require('./aop/advice');
 const app = express();
 const server = createServer(app);
 const io = socket(server);
-const port = 5000;
+const port = 5001;
 const corsOpt = {
-    origin: ['http://localhost:3000'],
+    origin: ['http://localhost:3001'],
     credentials: true,
 }
 
